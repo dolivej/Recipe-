@@ -2,7 +2,8 @@ import { useNavigation } from '@react-navigation/core'
 import React, {useState, useEffect} from 'react'
 import {StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native'
 import {auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged} from '../../services/firebase'
-
+import {brandColors} from '../../styles/globalBrandColors'
+import {globalTextStyles} from '../../styles/globalTextStyles'
 
 const searchRecipeScreen = () => {
     const [email, setEmail] = useState('')
@@ -47,13 +48,13 @@ const searchRecipeScreen = () => {
                     placeholder="Email"
                     value={email}
                     onChangeText={text => setEmail(text)}
-                    style={styles.input}
+                    style={[globalTextStyles.subSubTitle , styles.input]}
                 />
                 <TextInput
                     placeholder="Password"
                     value={password}
                     onChangeText={text => setPassword(text)}
-                    style={styles.input}
+                    style={[globalTextStyles.subSubTitle , styles.input]}
                     secureTextEntry
                 />
             </View>
@@ -65,13 +66,13 @@ const searchRecipeScreen = () => {
                     onPress={handleLogin}
                     style={styles.button}
                 >
-                    <Text style={styles.buttonText}>Login</Text>
+                    <Text style={[globalTextStyles.subTitle ,styles.buttonText]}>Login</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={handleSignUp}
                     style={[styles.button, styles.buttonOutline]}
                 >
-                    <Text style={styles.buttonOutlineText}>Register</Text>
+                    <Text style={[globalTextStyles.subTitle, styles.buttonOutlineText]}>Register</Text>
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         paddingHorizontal: 15,
         paddingVertical: 10,
-        borderRadius: 10,
+        borderRadius: 5,
         marginTop: 5,
     },
     buttonContainer: {
@@ -103,26 +104,22 @@ const styles = StyleSheet.create({
         marginTop: 40,
     },
     button: {
-        backgroundColor: '#0782F9',
+        backgroundColor: brandColors.primary,
         width: '100%',
         padding: 15,
-        borderRadius: 10,
+        borderRadius: 5,
         alignItems: 'center'
     },
     buttonOutline: {
-        backgroundColor: 'white',
+        backgroundColor: brandColors.white,
         marginTop: 5,
-        borderColor: '#0782F9',
+        borderColor: brandColors.primary,
         borderWidth: 2
     },
     buttonText: {
-        color: 'white',
-        fontWeight: '700',
-        fontSize: 16
+        color: brandColors.white,
     },
     buttonOutlineText: {
-        color: '#0782F9',
-        fontWeight: '700',
-        fontSize: 16
+        color: brandColors.primary,
     }
 })
