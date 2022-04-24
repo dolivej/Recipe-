@@ -2,6 +2,8 @@ import React from 'react'
 import {StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import {auth, signOut} from '../../services/firebase'
 import { useNavigation } from '@react-navigation/core'
+import {brandColors} from '../../styles/globalBrandColors'
+import {globalTextStyles} from '../../styles/globalTextStyles'
 
 const searchRecipeScreen = () => {
     const navigation = useNavigation();
@@ -20,7 +22,7 @@ const searchRecipeScreen = () => {
                 style={styles.button}
                 onPress={handleSignOut}
             >
-                <Text style={styles.buttonText}>Sign Out</Text>
+                <Text style={[globalTextStyles.subTitle ,styles.buttonText]}>Sign Out</Text>
             </TouchableOpacity>
         </View>
     )
@@ -35,15 +37,13 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     button: {
-        backgroundColor: '#0782F9',
+        backgroundColor: brandColors.primary,
         width: '60%',
         padding: 15,
-        borderRadius: 10,
+        borderRadius: 5,
         alignItems: 'center'
     },
     buttonText: {
-        color: 'white',
-        fontWeight: '700',
-        fontSize: 16
+        color: brandColors.white,
     }
 })
