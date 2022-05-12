@@ -1,28 +1,21 @@
-import React from 'react'
-import {StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import {auth, signOut} from '../../services/firebase'
-import { useNavigation } from '@react-navigation/core'
+import React, {useContext} from 'react'
+import {StyleSheet, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native'
+import {AuthContext} from '../../providers/authProvider'
 import {brandColors} from '../../styles/globalBrandColors'
 import {globalTextStyles} from '../../styles/globalTextStyles'
 
 const searchRecipeScreen = () => {
-    const navigation = useNavigation();
-
-    const handleSignOut = () => {
-        signOut(auth)
-        .then(() => {
-            navigation.replace("loginScreen")
-        })
-        .catch(error => {alert(error.message)})
-    }
+    const {signOut, loadingAuth} = useContext(AuthContext)
+    
 
     return (
         <View style={styles.container}>
             <TouchableOpacity
                 style={styles.button}
-                onPress={handleSignOut}
+                onPress={() => {signOut()}}
             >
-                <Text style={[globalTextStyles.subTitle ,styles.buttonText]}>Sign Out</Text>
+                {!loadingAuth && <Text style={[globalTextStyles.subTitle, styles.buttonText]}>Sign Out</Text>}
+                {loadingAuth && <ActivityIndicator size="small" color={brandColors.white} />}
             </TouchableOpacity>
         </View>
     )
